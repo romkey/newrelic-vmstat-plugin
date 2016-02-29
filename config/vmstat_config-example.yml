@@ -11,7 +11,3 @@ newrelic:
 
 # Agent Configuration:
 agents:
-  vmstat:
-    -
-        # description is added to the 
-        description: `hostname`
