@@ -6,20 +6,22 @@ require 'newrelic_plugin'
 
 module VmstatAgent
   class Agent < NewRelic::Plugin::Agent::Base
-    agent_guid "com.romkey.newrelic.vmstat"
+    agent_guid "com.romkey.newrelic.plugins.vmstat"
     agent_human_labels("Platform") { `hostname` }
-    agent_version '0.0.1'
-
-    def setup_metrics
-      
-    end
+    agent_version '0.1.0'
 
     def poll_cycle
       stats = memory_stats
 
       if stats
-        stats.each do |key,value|
-          report_metric key, '', value
+        stats.each do |key, measurement|
+          if key.match /page/
+            value = 'Pages'
+          else
+            value = 'Kbytes'
+          end
+
+          report_metric key, value, measurement
         end
       end
     end
