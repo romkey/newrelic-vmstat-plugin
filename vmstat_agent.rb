@@ -18,7 +18,8 @@ module VmstatAgent
           if key.match /page/
             value = 'Pages'
           else
-            value = 'Kbytes'
+            value = 'Bytes'
+            measurement = measurement.to_i * 1024
           end
 
           report_metric key, value, measurement
