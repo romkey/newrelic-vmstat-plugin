@@ -8,7 +8,7 @@ module VmstatAgent
   class Agent < NewRelic::Plugin::Agent::Base
     agent_guid "com.romkey.newrelic.plugins.vmstat"
     agent_human_labels("Platform") { `hostname` }
-    agent_version '0.1.0'
+    agent_version '0.2.0'
 
     def poll_cycle
       stats = memory_stats
